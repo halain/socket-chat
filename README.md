@@ -1,9 +1,22 @@
-# Notas:
+# Chat con NodeJS y Socket.io:
 
-Este es un pequeño servidor de express listo para ejecutarse y servir la carpeta public en la web.
+Aplicacion basica de un chat utilizando node y socket.io 
+Se utilizan salas de usuarios
 
-Recuerden que deben de reconstruir los módulos de node con el comando
+## Instalar dependencias
 
 ```
 npm install
+```
+
+## Correr servidor con nodemon
+
+```
+nodemon server/server
+```
+
+## Con node
+
+```
+node server/server
 ```

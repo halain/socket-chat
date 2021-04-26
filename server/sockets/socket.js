@@ -24,16 +24,19 @@ io.on('connection', (client) => {
         let usuariosSala = usuarios.getPersonasPorSala(data.sala);
         //emitir solo a clientes de la misma sala
         client.broadcast.to(data.sala).emit('listaPersonas', usuariosSala);
+        client.broadcast.to(data.sala).emit('crearMensaje', crearMensaje('Administrador', `${data.nombre} se unió al chat`) );
 
         callback(usuariosSala);
     });
 
     
-    client.on('crearMensaje', data => {
+    client.on('crearMensaje', (data, callback) => {
         let persona = usuarios.getPersona(client.id);
         let mensaje = crearMensaje(persona.nombre, data.mensaje);
         //emitir mensaje a toda una sala
         client.broadcast.to(persona.sala).emit('crearMensaje', mensaje);
+
+        callback(mensaje);
     });
 
     client.on('disconnect', ()=>{
